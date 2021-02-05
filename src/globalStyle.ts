@@ -1,4 +1,5 @@
 import {createGlobalStyle} from "styled-components";
+import {LIGHT, DARK} from "./constants/colours";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -13,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     #root {
-        background-color: #000;
-        color: #fff;
+        background-color: ${LIGHT};
+        color: ${DARK};
     }
 `;

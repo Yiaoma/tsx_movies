@@ -1,8 +1,8 @@
 import React from "react";
-import {HeaderContainer} from "../containers/Header";
+import {FooterContainer} from "../containers/Footer";
 
 export const Home: React.FC = () => (
     <>
-        <HeaderContainer/>
+        <FooterContainer/>
     </>
 );
