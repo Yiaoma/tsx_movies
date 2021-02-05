@@ -8,6 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle-[contenthash].js"
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -18,7 +19,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".js", ".jsx", ".tx", ".tsx"]
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
     },
     plugins: [
         new HtmlWebpackPlugin({
