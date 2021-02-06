@@ -1,8 +1,29 @@
 import styled from "styled-components";
+import {LIGHT} from "../../constants/colours";
 
-export const Container = styled.nav`
+interface Collapse {
+    isCollapsed: boolean | undefined;
+}
+
+interface Hide {
+    isHidden: boolean;
+}
+
+interface Dropdown {
+    isDropped: boolean | undefined;
+}
+
+export const Container = styled.nav<Hide>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
+    transform: ${({isHidden}) => isHidden ? "translateY(-100%)" : "translateY(0)"};
     flex-direction: column;
+    background-color: ${LIGHT};
+    transition: all 1s ease;
+    box-shadow: 0 5px 5px rgba(0,0,0,.1);
 `;
 
 export const Bar = styled.div`
@@ -25,8 +46,8 @@ export const CollapseToggler = styled.button`
     outline: none;
 `;
 
-export const Collapse = styled.div`
-    display: flex;
+export const Collapse = styled.div<Collapse>`
+    display: ${({isCollapsed}) => isCollapsed ? "flex" : "none"};
     flex-direction: column;
     padding: 0 1em 1em;
 `;
@@ -45,11 +66,13 @@ export const Dropdown = styled.div``;
 
 export const DropdownToggler = styled.button`
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     outline: none;
 `;
 
-export const SubList = styled.ul`
+export const SubList = styled.ul<Dropdown>`
+    display: ${({isDropped}) => isDropped ? "flex" : "none"};
+    flex-direction: column;
     font-size: 1.1rem;
     list-style: none;
     margin-left: 1em;
