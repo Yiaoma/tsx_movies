@@ -1,3 +1,5 @@
 export {Header} from "./Header";
 export {Footer} from "./Footer";
 export {Nav} from "./Nav";
+export {Main} from "./Main";
+export {List} from "./List";
