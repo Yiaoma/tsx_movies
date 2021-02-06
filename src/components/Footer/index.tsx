@@ -1,21 +1,28 @@
-import React, {ReactNode} from "react";
+import React from "react";
 import {Container, List, Item, Link, Copyright} from "./style";
 
-interface Props {
-    children: ReactNode;
+interface RestProps {
+    [rest: string]: any;
 }
 
-interface LinkProps {
-    target: string;
+interface LinkProps extends RestProps {
     href: string;
 }
 
-export const Footer = ({children}: Props) => <Container>{children}</Container>;
+interface CompoundComponents {
+    List: React.FC<RestProps>;
+    Item: React.FC<RestProps>;
+    Link: React.FC<LinkProps>;
+    Copyright: React.FC<RestProps>;
+}
 
-Footer.List = ({children}: Props) => <List>{children}</List>;
+export const Footer: React.FC<RestProps> & CompoundComponents = ({children, ...props}) => 
+    <Container {...props}>{children}</Container>;
 
-Footer.Item = ({children}: Props) => <Item>{children}</Item>;
+Footer.List = ({children, ...props}) => <List {...props}>{children}</List>;
 
-Footer.Link = (props: Props & LinkProps) => <Link {...props}>{props.children}</Link>;
+Footer.Item = ({children, ...props}) => <Item {...props}>{children}</Item>;
 
-Footer.Copyright = ({children}: Props) => <Copyright>{children}</Copyright>;
+Footer.Link = ({children, ...props}) => <Link {...props}>{children}</Link>;
+
+Footer.Copyright = ({children, ...props}) => <Copyright {...props}>{children}</Copyright>;
