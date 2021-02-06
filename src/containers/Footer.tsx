@@ -4,7 +4,7 @@ import {AiFillLinkedin, AiFillGithub, AiOutlineMail} from "react-icons/ai";
 import {GITHUB, LINKEDIN, EMAIL} from "../constants/links";
 import {COPYRIGHT} from "../constants/strings";
 
-export const FooterContainer = () => (
+export const FooterContainer: React.FC = () => (
     <Footer>
         <Footer.List>
             <Footer.Item>
