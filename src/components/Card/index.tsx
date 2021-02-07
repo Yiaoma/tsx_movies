@@ -1,21 +1,13 @@
 import React from "react";
 import {Container, Image, Title, Text} from "./style";
+import {Children} from "../../interfaces";
+import {Components} from "./Components";
 
-interface RestProps {
-    [rest: string]: any;
-}
+export const Card: React.FC<Children> & Components = ({children}) => 
+    <Container>{children}</Container>;
 
-interface CompoundComponents {
-    Image: React.FC<RestProps>;
-    Title: React.FC<RestProps>;
-    Text: React.FC<RestProps>;
-}
+Card.Image = ({children}) => <Image>{children}</Image>;
 
-export const Card: React.FC<RestProps> & CompoundComponents = ({children, ...props}) => 
-    <Container {...props}>{children}</Container>;
+Card.Title = ({children}) => <Title>{children}</Title>;
 
-Card.Image = ({children, ...props}) => <Image {...props}>{children}</Image>;
-
-Card.Title = ({children, ...props}) => <Title {...props}>{children}</Title>;
-
-Card.Text = ({children, ...props}) => <Text {...props}>{children}</Text>;
+Card.Text = ({children}) => <Text>{children}</Text>;

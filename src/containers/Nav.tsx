@@ -1,7 +1,7 @@
 import React from "react";
 import {Nav} from "../components";
 import {BiMovie, BiMenu} from "react-icons/bi";
-import navData from "../data/nav.json";
+const navData = require("../data/nav.json");
 
 interface NavList {
     id: string;

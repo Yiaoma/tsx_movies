@@ -1,15 +1,9 @@
 import React from "react";
 import {Background, Title} from "./style";
+import {Children, BackgroundImage} from "../../interfaces";
+import {Components} from "./Components";
 
-interface RestProps {
-    [rest: string]: any;
-}
+export const Hero: React.FC<Children & BackgroundImage> & Components = ({children, href}) => 
+    <Background href={href}>{children}</Background>;
 
-interface CompoundComponents {
-    Title: React.FC<RestProps>;
-}
-
-export const Hero: React.FC<RestProps> & CompoundComponents = ({children, src,  ...props}) => 
-    <Background src={src} {...props}>{children}</Background>;
-
-Hero.Title = ({children, ...props}) => <Title {...props}>{children}</Title>;
+Hero.Title = ({children}) => <Title>{children}</Title>;

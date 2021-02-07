@@ -3,11 +3,11 @@ import {Hero} from "../components";
 
 interface Types {
     title: string;
-    background: string;
+    href: string;
 }
 
-export const HeroContainer: React.FC<Types> = ({background, title}) => (
-    <Hero src={background}>
+export const HeroContainer: React.FC<Types> = ({href, title}) => (
+    <Hero href={href}>
         <Hero.Title>{title}</Hero.Title>
     </Hero>
 );

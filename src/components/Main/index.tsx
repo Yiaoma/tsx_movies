@@ -1,8 +1,5 @@
 import React from "react";
 import {Container} from "./style";
+import {Children} from "../../interfaces";
 
-interface RestProps {
-    [rest: string]: any;
-}
-
-export const Main: React.FC<RestProps> = ({children, ...props}) => <Container {...props}>{children}</Container>;
+export const Main: React.FC<Children> = ({children}) => <Container>{children}</Container>;

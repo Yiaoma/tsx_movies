@@ -1,21 +1,13 @@
 import React from "react";
 import {Container, Title, Base, Item} from "./style";
+import {Children} from "../../interfaces";
+import {Components} from "./Components";
 
-interface RestProps {
-    [rest: string]: any;
-}
+export const List: React.FC<Children> & Components = ({children}) => 
+    <Container>{children}</Container>;
 
-interface CompoundComponents {
-    Title: React.FC<RestProps>;
-    Base: React.FC<RestProps>;
-    Item: React.FC<RestProps>;
-}
+List.Title = ({children}) => <Title>{children}</Title>;
 
-export const List: React.FC<RestProps> & CompoundComponents = ({children, ...props}) => 
-    <Container {...props}>{children}</Container>;
+List.Base = ({children}) => <Base>{children}</Base>;
 
-List.Title = ({children, ...props}) => <Title {...props}>{children}</Title>;
-
-List.Base = ({children, ...props}) => <Base {...props}>{children}</Base>;
-
-List.Item = ({children, ...props}) => <Item {...props}>{children}</Item>;
+List.Item = ({children}) => <Item>{children}</Item>;
