@@ -1,19 +1,8 @@
 import styled from "styled-components";
-import {LIGHT} from "../../constants/colours";
+import {DARK, WHITE} from "../../constants/colours";
+import {Hideable, Dropdownable, Collapsable, Transparent} from "../../interfaces";
 
-interface Collapse {
-    isCollapsed: boolean | undefined;
-}
-
-interface Hide {
-    isHidden: boolean;
-}
-
-interface Dropdown {
-    isDropped: boolean | undefined;
-}
-
-export const Container = styled.nav<Hide>`
+export const Container = styled.nav<Hideable & Collapsable & Transparent>`
     position: fixed;
     top: 0;
     left: 0;
@@ -21,7 +10,8 @@ export const Container = styled.nav<Hide>`
     display: flex;
     transform: ${({isHidden}) => isHidden ? "translateY(-100%)" : "translateY(0)"};
     flex-direction: column;
-    background-color: ${LIGHT};
+    background-color: ${({isTransparent, isCollapsed}) => (isTransparent && !isCollapsed) ? "rgba(0,0,0,0)" : WHITE};
+    color: ${({isTransparent, isCollapsed}) => (isTransparent && !isCollapsed) ? WHITE : DARK};
     transition: all 1s ease;
     box-shadow: 0 5px 5px rgba(0,0,0,.1);
 `;
@@ -44,9 +34,11 @@ export const CollapseToggler = styled.button`
     font-size: 1.7rem;
     border: none;
     outline: none;
+    background-color: inherit;
+    color: inherit;
 `;
 
-export const Collapse = styled.div<Collapse>`
+export const Collapse = styled.div<Collapsable>`
     display: ${({isCollapsed}) => isCollapsed ? "flex" : "none"};
     flex-direction: column;
     padding: 0 1em 1em;
@@ -68,9 +60,11 @@ export const DropdownToggler = styled.button`
     border: none;
     font-size: 1.3rem;
     outline: none;
+    background-color: inherit;
+    color: inherit;
 `;
 
-export const SubList = styled.ul<Dropdown>`
+export const SubList = styled.ul<Dropdownable>`
     display: ${({isDropped}) => isDropped ? "flex" : "none"};
     flex-direction: column;
     font-size: 1.1rem;

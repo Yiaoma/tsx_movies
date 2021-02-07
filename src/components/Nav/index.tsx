@@ -1,9 +1,9 @@
 import React, { createContext, useContext} from "react";
 import {VscClose} from "react-icons/vsc";
 import {BiMenu} from "react-icons/bi";
-import {useCollapse} from "../../hooks/useCollapse";
-import {useHide} from "../../hooks/useHide";
-import {useDropdown} from "../../hooks/useDropdown";
+import {useHide, useCollapse, useDropdown, useTransparent} from "../../hooks";
+import {Collapsable, Dropdownable, Children} from "../../interfaces";
+import {Components} from "./Components";
 import {
     Container,
     Bar,
@@ -18,87 +18,61 @@ import {
     SubItem
 } from "./style";
 
-interface RestProps {
-    [rest: string]: any;
-}
+const CollapseContext = createContext<Collapsable>({});
+const DropdownContext = createContext<Dropdownable>({});
 
-interface CompoundComponents {
-    Bar: React.FC<RestProps>;
-    Logo: React.FC<RestProps>;
-    CollapseToggler: React.FC<RestProps>;
-    Collapse: React.FC<RestProps>;
-    List: React.FC<RestProps>;
-    Item: React.FC<RestProps>;
-    Dropdown: React.FC<RestProps>;
-    DropdownToggler: React.FC<RestProps>;
-    SubList: React.FC<RestProps>;
-    SubItem: React.FC<RestProps>;
-}
-
-interface Collapse {
-    isCollapsed: boolean;
-    handleCollapse: () => void;
-}
-
-interface Dropdown {
-    isDropped: boolean;
-    handleDropdown: () => void;
-}
-
-const CollapseContext = createContext<Collapse | null>(null);
-const DropdownContext = createContext<Dropdown | null>(null);
-
-export const Nav: React.FC<RestProps> & CompoundComponents = ({children, ...props}) => {
+export const Nav: React.FC<Children> & Components = ({children}) => {
     const {isCollapsed, handleCollapse} = useCollapse();
+    const {isTransparent} = useTransparent();
     const {isHidden} = useHide();
 
     return (
         <CollapseContext.Provider value={{isCollapsed, handleCollapse}}>
-            <Container isHidden={isHidden} {...props}>{children}</Container>
+            <Container isCollapsed={isCollapsed} isTransparent={isTransparent} isHidden={isHidden}>{children}</Container>
         </CollapseContext.Provider>
     );
 }
 
-Nav.Bar = ({children, ...props}) => <Bar {...props}>{children}</Bar>;
+Nav.Bar = ({children}) => <Bar>{children}</Bar>;
 
-Nav.Logo = ({children, ...props}) => <Logo {...props}>{children}</Logo>;
+Nav.Logo = ({children}) => <Logo>{children}</Logo>;
 
-Nav.CollapseToggler = ({children, ...props}) => {
-    const collapseContext = useContext(CollapseContext);
+Nav.CollapseToggler = () => {
+    const {isCollapsed, handleCollapse} = useContext(CollapseContext);
 
-    return <CollapseToggler onClick={collapseContext?.handleCollapse} {...props}>{collapseContext?.isCollapsed ? <VscClose/>  : <BiMenu/>}</CollapseToggler>
+    return <CollapseToggler onClick={handleCollapse}>{isCollapsed ? <VscClose/>  : <BiMenu/>}</CollapseToggler>
 }
 
-Nav.Collapse = ({children, ...props}) => {
-    const collapseContext = useContext(CollapseContext);
+Nav.Collapse = ({children}) => {
+    const {isCollapsed} = useContext(CollapseContext);
 
-    return <Collapse isCollapsed={collapseContext?.isCollapsed} {...props}>{children}</Collapse>;
+    return <Collapse isCollapsed={isCollapsed}>{children}</Collapse>;
 }
 
-Nav.List = ({children, ...props}) => <List {...props}>{children}</List>;
+Nav.List = ({children}) => <List>{children}</List>;
 
-Nav.Item = ({children, ...props}) => <Item {...props}>{children}</Item>;
+Nav.Item = ({children}) => <Item>{children}</Item>;
 
-Nav.Dropdown = ({children, ...props}) => {
+Nav.Dropdown = ({children}) => {
     const {isDropped, handleDropdown} = useDropdown();
 
     return (
         <DropdownContext.Provider value={{isDropped, handleDropdown}}>
-            <Dropdown {...props}>{children}</Dropdown>
+            <Dropdown>{children}</Dropdown>
         </DropdownContext.Provider>
     );
 }
 
-Nav.DropdownToggler = ({children, ...props}) => {
-    const dropdownContext = useContext(DropdownContext);
+Nav.DropdownToggler = ({children}) => {
+    const {isDropped, handleDropdown} = useContext(DropdownContext);
 
-    return <DropdownToggler onClick={dropdownContext?.handleDropdown} {...props}>{children}</DropdownToggler>
+    return <DropdownToggler onClick={handleDropdown}>{children} {isDropped ? "▴" : "▾"}</DropdownToggler>
 }
 
-Nav.SubList = ({children, ...props}) => {
-    const dropdownContext = useContext(DropdownContext);
+Nav.SubList = ({children}) => {
+    const {isDropped} = useContext(DropdownContext);
 
-    return <SubList isDropped={dropdownContext?.isDropped} {...props}>{children}</SubList>;
+    return <SubList isDropped={isDropped}>{children}</SubList>;
 }
 
-Nav.SubItem = ({children, ...props}) => <SubItem {...props}>{children}</SubItem>;
+Nav.SubItem = ({children}) => <SubItem>{children}</SubItem>;

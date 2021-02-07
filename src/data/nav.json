@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "title": "Movies",
+        "categories": ["Popular", "Now Playing", "UpComing", "Top Rated"]
+    },
+    {
+        "id": "2",
+        "title": "TV Shows",
+        "categories": ["Popular", "Airing Today", "On TV", "Top Rated"]
+    },
+    {
+        "id": "3",
+        "title": "People"
+    }
+]

@@ -1,6 +1,13 @@
 import React from "react";
 import {Nav} from "../components";
 import {BiMovie, BiMenu} from "react-icons/bi";
+import navData from "../data/nav.json";
+
+interface NavList {
+    id: string;
+    title: string;
+    categories?: string[];
+}
 
 export const NavContainer: React.FC = () => (
     <Nav>
@@ -10,29 +17,21 @@ export const NavContainer: React.FC = () => (
         </Nav.Bar>
         <Nav.Collapse>
             <Nav.List>
-                <Nav.Item>
-                    <Nav.Dropdown>
-                        <Nav.DropdownToggler>Movies</Nav.DropdownToggler>
-                        <Nav.SubList>
-                            <Nav.SubItem>Popular</Nav.SubItem>
-                            <Nav.SubItem>Now Playing</Nav.SubItem>
-                            <Nav.SubItem>Upcoming</Nav.SubItem>
-                            <Nav.SubItem>Top Rated</Nav.SubItem>
-                        </Nav.SubList>
-                    </Nav.Dropdown>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Dropdown>
-                        <Nav.DropdownToggler>TV Shows</Nav.DropdownToggler>
-                        <Nav.SubList>
-                            <Nav.SubItem>Popular</Nav.SubItem>
-                            <Nav.SubItem>Airing Today</Nav.SubItem>
-                            <Nav.SubItem>On TV</Nav.SubItem>
-                            <Nav.SubItem>Top Rated</Nav.SubItem>
-                        </Nav.SubList>
-                    </Nav.Dropdown>
-                </Nav.Item>
-                <Nav.Item>People</Nav.Item>
+                {navData.map((item: NavList) => {
+                    if (item.categories) {
+                        return (
+                            <Nav.Item key={item.id}>
+                                <Nav.Dropdown>
+                                    <Nav.DropdownToggler>{item.title}</Nav.DropdownToggler>
+                                    <Nav.SubList>
+                                    {item.categories.map(category => <Nav.SubItem key={category}>{category}</Nav.SubItem>)}
+                                    </Nav.SubList>
+                                </Nav.Dropdown>
+                            </Nav.Item>
+                        );
+                    } else {
+                        return <Nav.Item key={item.id}>{item.title}</Nav.Item>
+                    }})}
             </Nav.List>
         </Nav.Collapse>
     </Nav>
