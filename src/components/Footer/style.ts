@@ -4,7 +4,7 @@ import {LIGHT, DARK} from "../../constants/colours";
 export const Container = styled.footer`
     display: flex;
     flex-direction: column;
-    padding: 1em;
+    padding: 2em 1em;
     background-color: ${DARK};
     color: ${LIGHT};
     align-items: center;

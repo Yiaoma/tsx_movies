@@ -6,7 +6,7 @@ import {Components} from "./Components";
 export const Card: React.FC<Children> & Components = ({children}) => 
     <Container>{children}</Container>;
 
-Card.Image = ({children}) => <Image>{children}</Image>;
+Card.Image = ({src}) => <Image src={src}/>;
 
 Card.Title = ({children}) => <Title>{children}</Title>;
 

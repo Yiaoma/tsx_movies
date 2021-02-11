@@ -9,8 +9,8 @@ export const Background = styled.div<BackgroundImage>`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 200vh;
     align-items: center;
+    height: 500px;
 `;
 
 export const Title = styled.h1`
