@@ -1,16 +1,24 @@
 [
     {
+        "id": "0",
+        "title": "Home",
+        "to": "/"
+    },
+    {
         "id": "1",
         "title": "Movies",
-        "categories": ["Popular", "Now Playing", "UpComing", "Top Rated"]
+        "type": "movie",
+        "categories": [["Popular", "popular"], ["Now Playing", "now_playing"], ["Upcoming", "upcoming"], ["Top Rated", "top_rated"]]
     },
     {
         "id": "2",
         "title": "TV Shows",
-        "categories": ["Popular", "Airing Today", "On TV", "Top Rated"]
+        "type": "tv",
+        "categories": [["Popular", "popular"], ["Airing Today", "airing_today"], ["On TV", "on_the_air"], ["Top Rated", "top_rated"]]
     },
     {
         "id": "3",
-        "title": "People"
+        "title": "People",
+        "type": "people"
     }
 ]

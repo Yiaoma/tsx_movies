@@ -15,7 +15,8 @@ import {
     Dropdown,
     DropdownToggler,
     SubList,
-    SubItem
+    SubItem,
+    Link
 } from "./style";
 
 const CollapseContext = createContext<Collapsable>({});
@@ -35,7 +36,7 @@ export const Nav: React.FC<Children> & Components = ({children}) => {
 
 Nav.Bar = ({children}) => <Bar>{children}</Bar>;
 
-Nav.Logo = ({children}) => <Logo>{children}</Logo>;
+Nav.Logo = ({children, to}) => <Logo to={to}>{children}</Logo>;
 
 Nav.CollapseToggler = () => {
     const {isCollapsed, handleCollapse} = useContext(CollapseContext);
@@ -76,3 +77,5 @@ Nav.SubList = ({children}) => {
 }
 
 Nav.SubItem = ({children}) => <SubItem>{children}</SubItem>;
+
+Nav.Link = ({children, to}) => <Link to={to}>{children}</Link>;

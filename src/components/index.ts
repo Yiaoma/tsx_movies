@@ -5,3 +5,4 @@ export {Main} from "./Main";
 export {List} from "./List";
 export {Card} from "./Card";
 export {Hero} from "./Hero";
+export {Grid} from "./Grid";

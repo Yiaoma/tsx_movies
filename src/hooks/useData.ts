@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import {BASE} from "../constants/urls";
 
 export const useData = (path: string) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export const useData = (path: string) => {
             setData(json.results);
             setIsLoading(false);
         })();
-    }, []);
+    }, [path]);
 
     return {data, isLoading};
 }

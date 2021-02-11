@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {DARK, WHITE} from "../../constants/colours";
 import {Hideable, Dropdownable, Collapsable, Transparent} from "../../interfaces";
+import {Link as RouterLink} from "react-router-dom";
 
 export const Container = styled.nav<Hideable & Collapsable & Transparent>`
     position: fixed;
@@ -22,10 +23,11 @@ export const Bar = styled.div`
     justify-content: space-between;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(RouterLink)`
     display: flex;
     font-size: 1.7rem;
     align-items: center;
+    color: inherit;
 `;
 
 export const CollapseToggler = styled.button`
@@ -75,4 +77,9 @@ export const SubList = styled.ul<Dropdownable>`
 
 export const SubItem = styled.li`
     padding: .3em 0;
+`;
+
+export const Link = styled(RouterLink)`
+    text-decoration: none;
+    color: inherit;
 `;

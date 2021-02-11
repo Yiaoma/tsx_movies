@@ -1,1 +1,1 @@
-export const COPYRIGHT = "Copyright \u00a9 2021 Artiom Kalugin";
+export const COPYRIGHT: string = "Copyright \u00a9 2021 Artiom Kalugin";
