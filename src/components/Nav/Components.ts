@@ -1,21 +1,15 @@
-import {Children} from "../../interfaces";
-
-// TODO: MOVE THIS INTERFACE!
-interface To extends Children {
-    to: string;
-}
-
+import {Parent, Link} from "../../interfaces";
 
 export interface Components {
-    Bar: React.FC<Children>;
-    Logo: React.FC<To>;
+    Bar: React.FC<Parent>;
+    Logo: React.FC<Link & Parent>;
     CollapseToggler: React.FC;
-    Collapse: React.FC<Children>;
-    List: React.FC<Children>;
-    Item: React.FC<Children>;
-    Dropdown: React.FC<Children>;
-    DropdownToggler: React.FC<Children>;
-    SubList: React.FC<Children>;
-    SubItem: React.FC<Children>;
-    Link: React.FC<To>;
+    Collapse: React.FC<Parent>;
+    List: React.FC<Parent>;
+    Item: React.FC<Parent>;
+    Dropdown: React.FC<Parent>;
+    DropdownToggler: React.FC<Parent>;
+    SubList: React.FC<Parent>;
+    SubItem: React.FC<Parent>;
+    Link: React.FC<Link & Parent>;
 }

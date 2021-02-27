@@ -11,7 +11,7 @@ export const Home: React.FC = () => (
         {/* TODO: No static strings */}
         <Header>
             <NavContainer/>
-            <HeroContainer href="https://www.themoviedb.org/t/p/original/1IlxKk1NaFPeuCMQO9Bl0NUhhpw.jpg" title="Hello there"/>
+            <HeroContainer src="https://www.themoviedb.org/t/p/original/1IlxKk1NaFPeuCMQO9Bl0NUhhpw.jpg" title="Hello there"/>
         </Header>
         <Main>
             <ListContainer title="What's popular" path="/movie/popular"/>

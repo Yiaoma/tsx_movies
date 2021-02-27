@@ -10,6 +10,15 @@ interface Types {
     path: string;
 }
 
+interface Movie {
+    id: string;
+    poster_path: string;
+    title: string;
+    release_date: string;
+    original_name: string;
+    first_air_date: string;
+}
+
 export const ListContainer: React.FC<Types> = ({title, path}) => {
     const {data, isLoading} = useData(path);
 
@@ -17,8 +26,7 @@ export const ListContainer: React.FC<Types> = ({title, path}) => {
         <List>
             <List.Title>{title}</List.Title>
             <List.Base>
-                {/* TODO: FIX THIS!!*/}
-                {!isLoading && data.map(movie => (
+                {!isLoading && data.map((movie: Movie) => (
                     <List.Item key={movie.id}>
                         <Card>
                             <Card.Image src={`${POSTER}${movie.poster_path}`}/>

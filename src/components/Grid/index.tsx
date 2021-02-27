@@ -1,9 +1,5 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {Container} from "./style";
+import {Parent} from "../../interfaces";
 
-// TODO: Move this interface
-interface Grid {
-    children: ReactNode;
-}
-
-export const Grid: React.FC<Grid> = ({children}) => <Container>{children}</Container>;
+export const Grid: React.FC<Parent> = ({children}) => <Container>{children}</Container>;

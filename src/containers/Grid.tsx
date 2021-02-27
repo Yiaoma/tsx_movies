@@ -10,6 +10,8 @@ interface Movie {
     poster_path: string;
     title: string;
     release_date: string;
+    original_name: string;
+    first_air_date: string;
 }
 
 export const GridContainer = () => {
@@ -21,8 +23,8 @@ export const GridContainer = () => {
             {!isLoading && data.map((movie: Movie) => (
                 <Card key={movie.id}>
                     <Card.Image src={`${POSTER}${movie.poster_path}`}/>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Card.Text>{movie.release_date}</Card.Text>
+                    <Card.Title>{movie.original_name || movie.title}</Card.Title>
+                    <Card.Text>{movie.release_date || movie.first_air_date}</Card.Text>
                 </Card>
             ))}
         </Grid>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import {BackgroundImage} from "../../interfaces";
+import {Image} from "../../interfaces";
 
-export const Background = styled.div<BackgroundImage>`
+export const Background = styled.div<Image>`
     display: flex;
-    background-image: url(${({href}) => href});
+    background-image: url(${({src}) => src});
     height: auto;
     justify-content: center;
     background-position: center;

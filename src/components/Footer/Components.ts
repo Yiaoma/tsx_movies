@@ -1,8 +1,8 @@
-import {Children} from "../../interfaces";
+import {Parent} from "../../interfaces";
 
 export interface Components {
-    List: React.FC<Children>;
-    Item: React.FC<Children>;
-    Link: React.FC<Children>;
-    Copyright: React.FC<Children>;
+    List: React.FC<Parent>;
+    Item: React.FC<Parent>;
+    Link: React.FC<Parent>;
+    Copyright: React.FC<Parent>;
 }

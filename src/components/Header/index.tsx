@@ -1,5 +1,5 @@
 import React from "react";
 import {Container} from "./style";
-import {Children} from "../../interfaces";
+import {Parent} from "../../interfaces";
 
-export const Header: React.FC<Children> = ({children}) => <Container>{children}</Container>;
+export const Header: React.FC<Parent> = ({children}) => <Container>{children}</Container>;

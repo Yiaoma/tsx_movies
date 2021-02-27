@@ -2,7 +2,7 @@ import React, { createContext, useContext} from "react";
 import {VscClose} from "react-icons/vsc";
 import {BiMenu} from "react-icons/bi";
 import {useHide, useCollapse, useDropdown, useTransparent} from "../../hooks";
-import {Collapsable, Dropdownable, Children} from "../../interfaces";
+import {Collapsable, Dropdownable, Parent} from "../../interfaces";
 import {Components} from "./Components";
 import {
     Container,
@@ -22,7 +22,7 @@ import {
 const CollapseContext = createContext<Collapsable>({});
 const DropdownContext = createContext<Dropdownable>({});
 
-export const Nav: React.FC<Children> & Components = ({children}) => {
+export const Nav: React.FC<Parent> & Components = ({children}) => {
     const {isCollapsed, handleCollapse} = useCollapse();
     const {isTransparent} = useTransparent();
     const {isHidden} = useHide();
@@ -76,6 +76,9 @@ Nav.SubList = ({children}) => {
     return <SubList isDropped={isDropped}>{children}</SubList>;
 }
 
-Nav.SubItem = ({children}) => <SubItem>{children}</SubItem>;
+Nav.SubItem = ({children}) => {
+    const {handleCollapse} = useContext(CollapseContext);
+    return <SubItem onClick={handleCollapse}>{children}</SubItem>;
+}
 
 Nav.Link = ({children, to}) => <Link to={to}>{children}</Link>;

@@ -1,12 +1,8 @@
-import {Children} from "../../interfaces";
-
-// TODO: move this inetrface
-interface Src {
-    src: string;
-}
+import {Parent} from "../../interfaces";
+import {Image} from "../../interfaces";
 
 export interface Components {
-    Image: React.FC<Src>;
-    Title: React.FC<Children>;
-    Text: React.FC<Children>;
+    Image: React.FC<Image>;
+    Title: React.FC<Parent>;
+    Text: React.FC<Parent>;
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import {Container, Image, Title, Text} from "./style";
-import {Children} from "../../interfaces";
+import {Parent} from "../../interfaces";
 import {Components} from "./Components";
 
-export const Card: React.FC<Children> & Components = ({children}) => 
+export const Card: React.FC<Parent> & Components = ({children}) => 
     <Container>{children}</Container>;
 
 Card.Image = ({src}) => <Image src={src}/>;
